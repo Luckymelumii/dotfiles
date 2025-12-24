@@ -1,0 +1,56 @@
+# Cache directories
+**/.cache/
+**/cache/
+**/__pycache__/
+**/.pytest_cache/
+
+# Electron/Chrome/Browser data
+**/electron/
+**/Electron/
+**/Cache/
+**/Code Cache/
+**/GPUCache/
+**/Service Worker/
+**/Session Storage/
+**/Local Storage/
+**/IndexedDB/
+**/.config/*/Cache/
+**/.config/*/CachedData/
+**/.config/*/Code Cache/
+**/.mozilla/
+**/.config/google-chrome*/
+**/.config/BraveSoftware/
+**/chromium/
+
+# VS Code workspace data
+**/Code/User/workspaceStorage/
+**/Code/User/globalStorage/
+**/Code/User/History/
+
+# Logs and temp files
+*.log
+*.tmp
+*.temp
+*~
+*.swp
+*.swo
+
+# Secrets
+*.pem
+*.key
+*password*
+*.env
+*secret*
+
+# Large binaries
+*.iso
+*.img
+*.AppImage
+*.deb
+*.rpm
+
+# Node
+**/node_modules/
+
+# Spotify cache (if you have it)
+**/spotify/
