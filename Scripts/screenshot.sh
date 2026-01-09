@@ -1,30 +1,22 @@
 #!/usr/bin/env bash
-
 # 🖼️ Screenshot Script using grimblast + satty
-# Supports: area, full, window
 
-# Save directory
 SAVE_DIR="$HOME/media/Screenshots"
 mkdir -p "$SAVE_DIR"
 
-# Mode from argument (area|full|window)
-MODE="$1"
-
-# Generate timestamp filename
+MODE="${1:-area}" # Default to area if no arg
 TIME=$(date +"%Y-%m-%d_%H-%M-%S")
 FILE="$SAVE_DIR/screenshot_$TIME.png"
 
-# Function to edit and copy the screenshot with Satty
 edit_and_copy() {
   satty --output-filename "$FILE" \
     --initial-tool brush \
     --copy-command wl-copy \
     --save-after-copy \
     --early-exit \
-    --filename -
+    --filename - && return 0 || return 1
 }
 
-# Choose what to capture
 case "$MODE" in
 area)
   grimblast save area - | edit_and_copy
@@ -41,5 +33,9 @@ window)
   ;;
 esac
 
-# Optional desktop notification
-notify-send "📸 Screenshot saved!" "$FILE"
+# Only notify if file was actually saved
+if [[ $? -eq 0 && -f "$FILE" ]]; then
+  notify-send "📸 Screenshot saved!" "$FILE"
+else
+  notify-send "❌ Screenshot cancelled" -u low
+fi
